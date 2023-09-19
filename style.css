@@ -1,0 +1,378 @@
+body {
+    background-image: url('pokeball-background.jpg'); /* Fondo con diseño de Pokébolas */
+    background-image: repeating-linear-gradient(0deg, transparent 0px, transparent 25px,rgb(255,203,5) 25px, rgb(255,203,5) 27px,transparent 27px, transparent 51px),repeating-linear-gradient(90deg, transparent 0px, transparent 25px,rgb(255,203,5) 25px, rgb(255,203,5) 27px,transparent 27px, transparent 51px),repeating-linear-gradient(90deg, transparent 0px, transparent 50px,rgb(255,0,0) 50px, rgb(255,0,0) 52px,transparent 52px, transparent 102px),repeating-linear-gradient(0deg, transparent 0px, transparent 50px,rgb(255,0,0) 50px, rgb(255,0,0) 52px,transparent 52px, transparent 102px),repeating-linear-gradient(0deg, rgb(17,0,255) 0px, rgb(17,0,255) 2px,transparent 2px, transparent 102px),repeating-linear-gradient(90deg, rgb(17,0,255) 0px, rgb(17,0,255) 2px,transparent 2px, transparent 102px),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));
+    background-size: cover;
+    color: #333; /* Texto negro */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+    background-color: #333; /* Fondo gris oscuro */
+    color: #fff; /* Texto blanco */
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+    background-color: #FFCB05; /* Amarillo Pokémon para el encabezado */
+}
+
+.header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FF0000; /* Rojo Pokémon */
+    color: #fff; /* Texto blanco */
+    padding: 10px 20px;
+}
+
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff; /* Líneas blancas para el icono de hamburguesa */
+    margin: 3px 0;
+}
+
+#ramoncito {
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.navbar-menu {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu li {
+    margin-right: 20px;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #fff; /* Texto blanco para los enlaces */
+}
+
+
+/* Estilos para el modo oscuro VENTANA EMERGENTE */
+.dark-mode {
+    background-color: #121212 !important;
+    color: #fff !important;
+}
+.dark-mode h2 {
+    color: #1100ff !important; /* Cambia el color del encabezado en modo oscuro */
+}
+/* Agrega otros estilos para elementos específicos aquí */
+
+
+
+
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .navbar-toggle {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+    }
+
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #FFA500; /* Naranja Pokémon */
+        width: 100%;
+        align-items: center; /* Centra verticalmente */
+    }
+
+    .navbar-menu.show {
+        display: flex;
+    }
+
+    .navbar-menu li {
+        margin: 10px 0;
+    }
+    #ramoncito {
+        font-size: 24px;
+        font-weight: bold;
+        margin:20px
+
+    }
+}
+ /* Estilos para hacer que el texto sea responsivo a 320px */
+ @media screen and (max-width: 320px) {
+    #titulo {
+        font-size: 28px; /* Tamaño de fuente más pequeño para pantalla pequeña */
+    }
+
+    #descripcion {
+        font-size: 14px; /* Tamaño de fuente más pequeño para pantalla pequeña */
+    }
+}
+/* Estilos para el contenido */
+.content {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.content p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Estilos para el footer */
+.footer {
+    background-color: #0055A4; /* Azul Pokémon */
+    color: #fff; /* Texto blanco */
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+footer a {
+    color: #FFCB05; /* Amarillo Pokémon para los enlaces en el footer */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline; /* Subraya los enlaces al pasar el mouse */
+}
+
+
+/* Estilos para la barra de navegación en modo oscuro */
+body.dark-mode .navbar {
+    background-color: #222; /* Cambiar el color de fondo de la barra de navegación en modo oscuro */
+    color: #fff; /* Cambiar el color del texto en modo oscuro */
+}
+
+/* Estilos para el contenido en modo oscuro */
+body.dark-mode .content {
+    background-color: #000000; /* Cambiar el color de fondo del contenido en modo oscuro */
+    color: #fff; /* Cambiar el color del texto del contenido en modo oscuro */
+}
+
+/* Estilos para el footer en modo oscuro */
+body.dark-mode .footer {
+    background-color: #111; /* Cambiar el color de fondo del footer en modo oscuro */
+    color: #fff; /* Cambiar el color del texto del footer en modo oscuro */
+}
+
+/* Estilos para los enlaces en modo oscuro */
+body.dark-mode a {
+    color: #2cad2a; /* Cambiar el color de los enlaces en modo oscuro */
+}
+
+/* Estilos para los enlaces en el footer en modo oscuro */
+body.dark-mode .footer a {
+    color: #FFCB05; /* Cambiar el color de los enlaces en el footer en modo oscuro */
+}
+
+/* Estilos para el botón de modo oscuro en modo oscuro */
+body.dark-mode #modoBoton {
+    background-color: #FFCB05; /* Cambiar el color de fondo del botón de modo oscuro en modo oscuro */
+    color: #333; /* Cambiar el color del texto del botón de modo oscuro en modo oscuro */
+}
+
+/* PICACHU HTML ATENCION!!!/*
+/* Estilo para los divs de las tarjetas de Pokémon */
+.pokemon-card {
+    border: 1px solid #253B80; /* Borde azul */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espacio interior */
+    margin-bottom: 20px; /* Espacio entre las tarjetas */
+    text-align: center; /* Alineación de texto en el centro */
+}
+
+/* Estilo para la tarjeta especial con degradado de colores Pokémon */
+.special-pokemon-card {
+    background: linear-gradient(45deg, #FF5959, #FFCB05, #253B80); /* Degradado de colores Pokémon */
+    border: 1px solid #253B80; /* Borde azul */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espacio interior */
+    margin-bottom: 20px; /* Espacio entre las tarjetas */
+    text-align: center; /* Alineación de texto en el centro */
+}
+
+.pokemon-card img {
+    max-width: 100%; /* Imágenes ajustadas al ancho de la tarjeta */
+    height: auto; /* Altura automática */
+    margin-bottom: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.pokemon-card h2 {
+    color: #253B80; /* Texto azul para el título */
+    font-size: 24px; /* Tamaño de fuente para el título */
+    margin-bottom: 10px; /* Espacio entre el título y el párrafo */
+}
+
+.pokemon-card p {
+    color: #333; /* Texto negro */
+    font-size: 16px; /* Tamaño de fuente para el texto */
+}
+
+/*/ botones de picachu html
+/* Estilos para el botón "Ver Más" */
+.ver-mas-button {
+    background-color: #ffcc29; /* Amarillo claro - color de Pokémon tipo eléctrico */
+    color: #000; /* Texto en color negro */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ver-mas-button:hover {
+    background-color: #fbb03b; /* Amarillo más oscuro al pasar el mouse */
+}
+
+/*/*VENANA EMERGENTE*/
+/* Estilos para la ventana emergente */
+.ventana-emergente {
+    display: none;
+    position: fixed;
+    top: 0; /* Fija la ventana emergente en la parte superior */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow-y: auto; /* Habilita el desplazamiento vertical solo dentro de la ventana emergente */
+    max-height: 100vh; /* Establece la altura máxima al alto de la ventana */
+}
+
+
+/* Estilos para el botón de cerrar */
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Media query para pantallas con un ancho máximo de 320px (móviles pequeños) */
+@media (max-width: 320px) {
+    .ventana-emergente {
+        width: 90%; /* Ancho del 90% para que quepa bien en pantallas pequeñas */
+        max-width: 320px; /* Ancho máximo para mantenerlo legible */
+        max-height: 80vh; /* Altura máxima como el 80% del viewport height */
+        overflow-y: scroll; /* Habilitar el desplazamiento vertical si es necesario */
+        padding: 10px; /* Espaciado interno */
+    }
+
+    /* Estilos para el botón de cerrar en pantallas pequeñas */
+    .cerrar {
+        top: 5px;
+        right: 5px;
+        font-size: 12px;
+    }
+}
+
+/* Media query para tabletas en modo retrato y paisaje */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .ventana-emergente {
+        width: 70%; /* Ancho del 70% para una mejor visualización en tabletas */
+        max-width: 600px; /* Ancho máximo para mantenerlo legible */
+        max-height: 70vh; /* Altura máxima como el 70% del viewport height */
+        overflow-y: scroll; /* Habilitar el desplazamiento vertical si es necesario */
+        padding: 15px; /* Espaciado interno */
+    }
+
+    /* Estilos para el botón de cerrar en tabletas */
+    .cerrar {
+        top: 5px;
+        right: 5px;
+        font-size: 14px;
+    }
+}
+
+/* Media query para pantallas de dispositivos móviles más grandes, como iPhone X */
+@media (min-width: 375px) and (max-width: 414px) {
+    .ventana-emergente {
+        width: 80%; /* Ancho del 80% para una mejor visualización en estos dispositivos */
+        max-width: 400px; /* Ancho máximo para mantenerlo legible */
+        max-height: 70vh; /* Altura máxima como el 70% del viewport height */
+        overflow-y: scroll; /* Habilitar el desplazamiento vertical si es necesario */
+        padding: 15px; /* Espaciado interno */
+    }
+
+    /* Estilos para el botón de cerrar en estos dispositivos */
+    .cerrar {
+        top: 5px;
+        right: 5px;
+        font-size: 14px;
+    }
+}
+
+/* Agrega más media queries según sea necesario para otras resoluciones */
+
+
+
+
+/* ... */
+
+.star-rating {
+    display: inline-block;
+  }
+  
+  .star-rating input[type="radio"] {
+    display: none;
+  }
+  
+  .star-rating label {
+    font-size: 20px;
+    color: #FFD700;
+    cursor: pointer;
+  }
+  
+  .star-rating input[type="radio"]:checked ~ label:before {
+    content: "\2605"; /* Estrella rellena */
+  }
+  
+  /*votar/
+  /* ... */
+  
+  .star-rating {
+    display: inline-block;
+  }
+  
+  .star-rating input[type="radio"] {
+    display: none;
+  }
+
+  .star-rating label {
+    font-size: 20px;
+    color: #FFD700;
+    cursor: pointer;
+  }
+
+  .star-rating label:before {
+    content: "\2606"; /* Estrella vacía */
+  }
+
+  .star-rating input[type="radio"]:checked ~ label:before {
+    content: "\2605"; /* Estrella rellena */
+  }
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gengar - Comercio Digital de Pokémon</title>
+    <link rel="stylesheet" href="style.css">
+    <link type="image/png" sizes="120x120" rel="icon" href="https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/main/Fotos/umbrella-corporation-120.png?raw=true">
+</head>
+<body>
+    <header class="header">
+        <h1>CATALOGO POKÉMON</h1>
+        <p>Solo disponibles los mejores Pokémon:</p>
+    </header>
+    <div class="navbar">
+        <div class="navbar-toggle" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <span id="ramoncito">TIENDA RAMONCITO</span>
+        <ul class="navbar-menu" id="navbarMenu">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="#">CATÁLOGO</a></li>
+            <!-- Agrega más enlaces según sea necesario -->
+        </ul>
+        <button id="modoBoton">Modo oscuro</button> <!-- Botón de cambio de modo -->
+    </div>
+   <div class="content">
+    <div class="pokemon-card">
+        <img src="" alt="">
+        <h2></h2>
+        <p></p>
+        <h3>Características:</h3>
+        <ul>
+            <li>Tipo: </li>
+            <li>Habilidad: </li>
+            <li>Poder: </li>
+            <li>Velocidad: </li>
+        </ul>
+        <p>Compra: <span id="compra"></span></p>
+        <p>Precio: $<span id="precio"></span></p>
+        <p>Votación: <span id="votacion"></span></p>
+        <button class="compra-button">Compra</button>
+        <button onclick="goBackToIndex()" class="volver-button">Volver Atrás</button>
+    </div>
+</div>
+    <footer class="footer">
+        <p>© 2023 Comercio Digital de Pokémon</p>
+        <p>¡Atrápalos ya, o al menos clónalos!</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        function goBackToIndex() {
+            window.location.href = 'index-picachu.html';
+        }
+    </script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    
+        // Obtener el ID del Pokémon de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const pokemonId = urlParams.get('id');
+    
+        // Invocar los datos del archivo JSON y actualizar el DOM según el ID del Pokémon
+        fetch('datos.json')
+            .then(response => response.json())
+            .then(data => {
+                const pokemon = data.find(p => p.nombre.toLowerCase() === pokemonId.toLowerCase());
+    
+                if (pokemon) {
+                    // Actualizar el contenido HTML de detalles
+                    document.querySelector('.pokemon-card img').src = pokemon.imagen;
+                    document.querySelector('.pokemon-card img').alt = pokemon.nombre;
+                    document.querySelector('.pokemon-card h2').textContent = pokemon.nombre;
+                    document.querySelector('.pokemon-card p').textContent = pokemon.descripcion;
+                    document.querySelector('.pokemon-card ul li:nth-child(1)').textContent = `Tipo: ${pokemon.caracteristicas.tipo || pokemon.caracteristicas.Tipo}`;
+                    document.querySelector('.pokemon-card ul li:nth-child(2)').textContent = `Habilidad: ${pokemon.caracteristicas.habilidad || pokemon.caracteristicas.Habilidad}`;
+                    document.querySelector('.pokemon-card ul li:nth-child(3)').textContent = `Poder: ${pokemon.caracteristicas.poder || pokemon.caracteristicas.Poder}`;
+                    document.querySelector('.pokemon-card ul li:nth-child(4)').textContent = `Velocidad: ${pokemon.caracteristicas.velocidad || pokemon.caracteristicas.Velocidad}`;
+                    document.getElementById('compra').textContent = pokemon.compra;
+                    document.getElementById('precio').textContent = pokemon.precio;
+                    document.getElementById('votacion').textContent = pokemon.votacion;
+                } else {
+                    // Manejar el caso en el que el Pokémon no se encuentra
+                    document.querySelector('.pokemon-card h2').textContent = 'Pokémon no encontrado';
+                    document.querySelector('.pokemon-card p').textContent = 'El Pokémon que buscas no está disponible.';
+                    document.querySelector('.pokemon-card img').src = 'imagen_predeterminada.jpg';
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar los datos:', error);
+            });
+    </script>
+    
+
+
+</body>
+</html>

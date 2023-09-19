@@ -5,6 +5,7 @@ function toggleMenu() {
     navbarMenu.classList.toggle('show');
 }
 
+
 // DARK MODE
 var modoBoton = document.getElementById('modoBoton');
 var ventanaEmergente = document.getElementById("miVentanaEmergente");
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function mostrarInformacionPokemon(event) {
     // Obtener el ID del Pokémon desde el atributo data-id
     const pokemonId = event.currentTarget.getAttribute("data-id");
-  
+
     // Obtener los datos de los Pokémon desde el almacenamiento local
     const pokemonData = JSON.parse(localStorage.getItem("pokemonData"));
   
@@ -92,6 +93,28 @@ document.addEventListener("DOMContentLoaded", function () {
       <button onclick="goBackToIndex()" class="volver-button">Volver Atrás</button>
     `;
   }
+
+  function goBackToIndex() {
+    window.location.href = 'index.html';
+  }
+
+
+/*//*/
+// Función para cambiar el modo oscuro
+function cambiarModo() {
+  const modoBoton = document.getElementById('modoBoton');
+  const body = document.body;
+
+  if (body.classList.contains('modo-oscuro')) {
+    // Cambia a modo claro
+    body.classList.remove('modo-oscuro');
+    modoBoton.innerText = 'Modo claro';
+  } else {
+    // Cambia a modo oscuro
+    body.classList.add('modo-oscuro');
+    modoBoton.innerText = 'Modo oscuro';
+  }
+}
   
   function goBackToIndex() {
     window.location.href = 'index.html';

@@ -280,10 +280,12 @@ body.dark-mode #modoBoton {
 @media screen and (max-width: 320px) {
     .ver-mas-button,
     .compra-button,
-    .volver-button {
-        padding: 10px 20px; /* Volver al tamaño original */
+    .volver-button,
+    #modoBoton {
+        padding: 10px 20px; /* Volver al tamaño original para todos los botones */
     }
 }
+
 
 
 

@@ -232,8 +232,11 @@ body.dark-mode #modoBoton {
 }
 
 /*/ botones de picachu html
-/* Estilos para el botón "Ver Más" */
-.ver-mas-button {
+/* Estilos para el botón "Ver Más", "Volver", "Compra" y "Modo" */
+.ver-mas-button, 
+.volver-button,
+.compra-button,
+#modoBoton {
     background-color: #ffcc29; /* Amarillo claro - color de Pokémon tipo eléctrico */
     color: #000; /* Texto en color negro */
     padding: 10px 20px;
@@ -243,9 +246,15 @@ body.dark-mode #modoBoton {
     transition: background-color 0.3s ease;
 }
 
-.ver-mas-button:hover {
+/* Estilos al pasar el mouse sobre los botones */
+.ver-mas-button:hover,
+.volver-button:hover, 
+.compra-button:hover,
+#modoBoton:hover {
     background-color: #fbb03b; /* Amarillo más oscuro al pasar el mouse */
 }
+
+
 
 /*/*VENANA EMERGENTE*/
 /* Estilos para la ventana emergente */
@@ -330,49 +339,4 @@ body.dark-mode #modoBoton {
 
 
 
-
-/* ... */
-
-.star-rating {
-    display: inline-block;
-  }
-  
-  .star-rating input[type="radio"] {
-    display: none;
-  }
-  
-  .star-rating label {
-    font-size: 20px;
-    color: #FFD700;
-    cursor: pointer;
-  }
-  
-  .star-rating input[type="radio"]:checked ~ label:before {
-    content: "\2605"; /* Estrella rellena */
-  }
-  
-  /*votar/
-  /* ... */
-  
-  .star-rating {
-    display: inline-block;
-  }
-  
-  .star-rating input[type="radio"] {
-    display: none;
-  }
-
-  .star-rating label {
-    font-size: 20px;
-    color: #FFD700;
-    cursor: pointer;
-  }
-
-  .star-rating label:before {
-    content: "\2606"; /* Estrella vacía */
-  }
-
-  .star-rating input[type="radio"]:checked ~ label:before {
-    content: "\2605"; /* Estrella rellena */
-  }
 

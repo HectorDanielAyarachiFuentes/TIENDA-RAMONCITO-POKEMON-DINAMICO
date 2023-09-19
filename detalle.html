@@ -93,26 +93,7 @@
             .catch(error => {
                 console.error('Error al cargar los datos:', error);
             });
-// Función para cambiar el modo oscuro
-function cambiarModo() {
-    const modoBoton = document.getElementById('modoBoton');
-    const body = document.body;
-  
-    if (body.classList.contains('modo-oscuro')) {
-      // Cambia a modo claro
-      body.classList.remove('modo-oscuro');
-      modoBoton.innerText = 'Modo claro';
-    } else {
-      // Cambia a modo oscuro
-      body.classList.add('modo-oscuro');
-      modoBoton.innerText = 'Modo oscuro';
-    }
-  }
-
     </script>
-
-
-
 </body>
 </html>
 

@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comercio Digital de Pokémon</title>
     <link rel="stylesheet" href="style.css">
-    <link type="image/png" sizes="120x120" rel="icon"
-        href="https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/main/Fotos/umbrella-corporation-120.png?raw=true">
 </head>
 <body>
     <header class="header">
@@ -27,30 +25,54 @@
         </ul>
         <button id="modoBoton">Modo oscuro</button> <!-- Botón de cambio de modo -->
     </div>
-    <div class="content">
-        <div class="pokemon-card">
-            <img src="https://pbs.twimg.com/media/FLMjsSGXsAQakfm?format=webp&name=900x900" alt="Pikachu amarillo">
-            <h2>Pikachu</h2>
-            <p>Pikachu es un Pokémon eléctrico muy conocido por su carisma y poder.</p>
-            <a href="detalle.html?id=pikachu" class="ver-mas-button" style="text-decoration: none;">Ver Más</a>
-        </div>
-        <div class="pokemon-card">
-            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6af3dc15-155e-4325-9dd9-ce85298594b8/d6snycu-ee779e70-0516-4dfc-8a09-893c39ada387.png/v1/fill/w_362,h_354,q_80,strp/doge_charizard_by_rytrom27_d6snycu-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzU0IiwicGF0aCI6IlwvZlwvNmFmM2RjMTUtMTU1ZS00MzI1LTlkZDktY2U4NTI5ODU5NGI4XC9kNnNueWN1LWVlNzc5ZTcwLTA1MTYtNGRmYy04YTA5LTg5M2MzOWFkYTM4Ny5wbmciLCJ3aWR0aCI6Ijw9MzYyIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.lYFVxRnGxdWl_vYv7Jb3r7ctztOdoxogc48gY-sG4mM" alt="Charizard un pokemon amable">
-            <h2>Charizard</h2>
-            <p>Charizard es un Pokémon de tipo fuego/volador, conocido por su ferocidad en batalla.</p>
-            <a href="detalle.html?id=charizard" class="ver-mas-button" style="text-decoration: none;">Ver Más</a>
-        </div>
-        <div class="pokemon-card">
-            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6af3dc15-155e-4325-9dd9-ce85298594b8/d6snylx-953c2cc9-8f7c-41a4-a7b2-0f197dbf88de.jpg/v1/fit/w_428,h_414,q_70,strp/doge_venusaur_by_rytrom27_d6snylx-375w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDE0IiwicGF0aCI6IlwvZlwvNmFmM2RjMTUtMTU1ZS00MzI1LTlkZDktY2U4NTI5ODU5NGI4XC9kNnNueWx4LTk1M2MyY2M5LThmN2MtNDFhNC1hN2IyLTBmMTk3ZGJmODhkZS5qcGciLCJ3aWR0aCI6Ijw9NDI4In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.VeZ5A70FgpvU5Uz9f205JiPdmZ2AmTyJduF7Yro7iKE" alt="Gengar es tan bromista que ni es ese.">
-            <h2>Gengar</h2>
-            <p>Gengar es un Pokémon de tipo fantasma/veneno que disfruta gastando bromas a otros Pokémon, es tan bromista que ni se parece a la foto.</p>
-            <a href="detalle.html?id=gengar" class="ver-mas-button" style="text-decoration: none;">Ver Más</a>
-        </div>
+    <div class="content"></div>
+
     </div>
     <footer class="footer">
         <p>© 2023 Comercio Digital de Pokémon</p>
         <p>¡Atrápalos ya, o al menos clónalos!</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        const pokemonCards = [
+        {
+          name: 'Pikachu',
+          image: 'https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/8dde45491160c65c00978722ab0d0bd515fbf767/Fotos/FLMjsSGXsAQakfm.jpg?raw=true',
+          description: 'Pikachu es un Pokémon eléctrico muy conocido por su carisma y poder.',
+          link: 'detalle.html?id=pikachu',
+        },
+        {
+          name: 'Charizard',
+          image: 'https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/8dde45491160c65c00978722ab0d0bd515fbf767/Fotos/doge_charizard_by_rytrom27_d6snycu-fullview.jpg?raw=true',
+          description: 'Charizard es un Pokémon de tipo fuego/volador, conocido por su ferocidad en batalla.',
+          link: 'detalle.html?id=charizard',
+        },
+        {
+          name: 'Gengar',
+          image: "https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMON-DINAMICO/blob/main/Fotos/doge_venusaur_by_rytrom27_d6snylx-375w-2x.jpg?raw=true",
+          description: 'Gengar es un Pokémon de tipo fantasma/veneno que disfruta gastando bromas a otros Pokémon, es tan bromista que ni se parece a la foto.',
+          link: 'detalle.html?id=gengar',
+        },
+      ];
+      
+      function createPokemonCard(pokemon) {
+        return `
+          <div class="pokemon-card">
+              <img src="${pokemon.image}" alt="${pokemon.name}">
+              <h2>${pokemon.name}</h2>
+              <p>${pokemon.description}</p>
+              <a href="${pokemon.link}" class="ver-mas-button" style="text-decoration: none;">Ver Más</a>
+          </div>
+        `;
+      }
+
+      // Renderiza las tarjetas en el contenedor HTML
+      const container = document.querySelector('.content');
+      pokemonCards.forEach((pokemon) => {
+        const cardHTML = createPokemonCard(pokemon);
+        container.insertAdjacentHTML('beforeend', cardHTML);
+      });
+
+    </script>
 </body>
 </html>

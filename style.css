@@ -232,26 +232,57 @@ body.dark-mode #modoBoton {
 }
 
 /*/ botones de picachu html
-/* Estilos para el botón "Ver Más", "Volver", "Compra" y "Modo" */
-.ver-mas-button, 
-.volver-button,
+/* Estilos base para los botones */
+.ver-mas-button,
 .compra-button,
-#modoBoton {
+.volver-button {
     background-color: #ffcc29; /* Amarillo claro - color de Pokémon tipo eléctrico */
     color: #000; /* Texto en color negro */
-    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    max-width: 320px; /* Ancho máximo de 320 píxeles */
+    width: 100%; /* Para que ocupe todo el ancho disponible */
+    padding: 10px 20px; /* Tamaño de relleno predeterminado */
+}
+
+/* Estilo para el botón "Compra" */
+.compra-button {
+    background-color: #4CAF50; /* Verde */
+    color: #fff; /* Texto en color blanco */
+    padding: 12px 24px; /* Tamaño más grande */
+}
+
+/* Estilo para el botón "Volver Atrás" */
+.volver-button {
+    background-color: #0074e4; /* Azul */
+    color: #fff; /* Texto en color blanco */
+    padding: 12px 24px; /* Tamaño más grande */
+}
+
+/* Estilo para el botón "Modo" */
+#modoBoton {
+    background-color: #ffcc29; /* Amarillo claro - color de Pokémon tipo eléctrico */
+    color: #000; /* Texto en color negro */
+    padding: 8px 16px; /* Tamaño más pequeño */
 }
 
 /* Estilos al pasar el mouse sobre los botones */
-.ver-mas-button:hover,
-.volver-button:hover, 
+.ver-mas-button:hover, 
 .compra-button:hover,
+.volver-button:hover,
 #modoBoton:hover {
     background-color: #fbb03b; /* Amarillo más oscuro al pasar el mouse */
+}
+
+/* Media query para pantallas con un ancho máximo de 320px */
+@media screen and (max-width: 320px) {
+    .ver-mas-button,
+    .compra-button,
+    .volver-button {
+        padding: 10px 20px; /* Volver al tamaño original */
+    }
 }
 
 
@@ -336,6 +367,7 @@ body.dark-mode #modoBoton {
 }
 
 /* Agrega más media queries según sea necesario para otras resoluciones */
+
 
 
 

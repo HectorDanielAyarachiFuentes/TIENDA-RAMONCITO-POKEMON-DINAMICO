@@ -5,106 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comercio Digital de Pokémon</title>
     <link rel="stylesheet" href="style.css">
-    <link type="image/png" sizes="120x120" rel="icon" href="https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/main/Fotos/umbrella-corporation-120.png?raw=true">
+    <link type="image/png" sizes="120x120" rel="icon"
+        href="https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/main/Fotos/umbrella-corporation-120.png?raw=true">
 </head>
 <body>
     <header class="header">
-        <h1>CATALOGO POKÉMON</h1>
-        <p>Solo disponibles los mejores Pokémon:</p>
+        <h1>Bienvenido al Comercio Digital de Pokémon</h1>
+        <p>Solo disponibles los mejores Pokémons:</p>
     </header>
     <div class="navbar">
-      <div class="navbar-toggle" onclick="toggleMenu()">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-      </div>
-        <span id="ramoncito">TIENDA RAMONCITO</span>
+        <div class="navbar-toggle" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <span id="ramoncito"> TIENDA RAMONCITO</span>
         <ul class="navbar-menu" id="navbarMenu">
-          <li><a href="index.html">INICIO</a></li>
-          <li><a href="index-picachu.html">CATALOGO</a></li>
-          <!-- Agrega más enlaces según sea necesario -->
-      </ul>
-      <button id="modoBoton" onclick="cambiarModo()">Modo oscuro</button> <!-- Botón de cambio de modo -->
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="index-picachu.html">CATALOGO</a></li>
+            <!-- Agrega más enlaces según sea necesario -->
+        </ul>
+        <button id="modoBoton" onclick="cambiarModo()">Modo claro</button> <!-- Botón de cambio de modo -->
     </div>
-    <div class="content"></div>
+    <div class="content">
+        <p>En nuestro Comercio Digital de Pokémon, ofrecemos una selección exclusiva de los mejores Pokémons para
+            entrenadores de élite. Todos nuestros Pokémons son clonados en colaboración con Umbrella
+            Corporation<sup>™</sup>.</p>
+        <p>Actualmente, tenemos disponibles los siguientes Pokémons:</p>
+        <ul>
+            <li>Pikachu</li>
+            <li>Charizard</li>
+            <li>Gengar</li> <!-- Añade tu elección de Pokémon aquí -->
+        </ul>
+        <p>¡Aprovecha esta oportunidad única para fortalecer tu equipo de Pokémon!</p>
+    </div>
+    <!-- VENTANA EMERGENTE -->
+    <div id="miVentanaEmergente" class="ventana-emergente" style="display:none;">
+        <span class="cerrar" id="cerrarPopup">&times;</span>
+        <h2>Corporación Umbrella</h2>
+        <p>
+            ¿Estás buscando un trabajo desafiante y emocionante? ¿Quieres trabajar en el sector de la tecnología y la
+            investigación? ¿Te interesa la creación de monstruos y la gestión de desastres?
+        </p>
+        <p>
+            Si es así, ¡Corporación Umbrella es el lugar adecuado para ti!
+        </p>
+        <p>
+            En Umbrella, estamos comprometidos con la excelencia en la investigación y el desarrollo de nuevas
+            tecnologías. Buscamos personas brillantes y creativas que quieran ayudarnos a crear un futuro mejor para la
+            humanidad.
+        </p>
+        <p>
+            ¿Tienes lo que se necesita?
+        </p>
+        <ul>
+            <li>Habilidades de liderazgo y trabajo en equipo</li>
+            <li>Capacidad para resolver problemas complejos</li>
+            <li>Pasión por la ciencia y la tecnología</li>
+            <li>Disposición a trabajar en un entorno desafiante</li>
+        </ul>
+        <p>
+            ¿No tienes lo que se necesita? No te preocupes, ¡Corporación Umbrella ahora acepta testigos de Jehová!
+        </p>
+        <p>
+            ¡Únete a nosotros y cambia el mundo!
+        </p>
+        <p>
+            Envía tu currículum vitae a <a href="mailto:umbrella@kil.com">umbrella@kill.com</a> o visita nuestra
+            página web en <a href="https://www.umbrella.com">www.umbrella.com</a>.
+        </p>
+    </div>
+    </div>
     <footer class="footer">
         <p>© 2023 Comercio Digital de Pokémon</p>
         <p>¡Atrápalos ya, o al menos clónalos!</p>
     </footer>
-    <script>
-        const pokemonCards = [
-            {
-              name: 'Pikachu',
-              image: 'https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMON-DINAMICO/blob/main/Fotos/FLMjsSGXsAQakfm.jpg?raw=true',
-              description: 'Pikachu es un Pokémon eléctrico muy conocido por su carisma y poder.',
-              link: 'detalle.html?id=pikachu',
-            },
-            {
-              name: 'Charizard',
-              image: 'https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMON-DINAMICO/blob/main/Fotos/doge_charizard_by_rytrom27_d6snycu-fullview.jpg?raw=true',
-              description: 'Charizard es un Pokémon de tipo fuego/volador, conocido por su ferocidad en batalla.',
-              link: 'detalle.html?id=charizard',
-            },
-            {
-              name: 'Gengar',
-              image: "https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMON-DINAMICO/blob/main/Fotos/doge_venusaur_by_rytrom27_d6snylx-375w-2x.jpg?raw=true",
-              description: 'Gengar es un Pokémon de tipo fantasma/veneno que disfruta gastando bromas a otros Pokémon, es tan bromista que ni se parece a la foto.',
-              link: 'detalle.html?id=gengar',
-            },
-        ];
-
-        // Función para guardar un Pokémon en localStorage
-        function guardarPokemonEnLocalStorage(pokemon) {
-            // Obtén los datos actuales de localStorage (si existen)
-            const pokemonGuardados = JSON.parse(localStorage.getItem('pokemonGuardados')) || [];
-
-            // Agrega el nuevo Pokémon al arreglo
-            pokemonGuardados.push(pokemon);
-
-            // Convierte el arreglo a formato JSON y guárdalo en localStorage
-            localStorage.setItem('pokemonGuardados', JSON.stringify(pokemonGuardados));
-        }
-
-        // Función para crear una tarjeta Pokémon y agregarla al contenedor
-        function createAndAppendPokemonCard(container, pokemon) {
-            const cardHTML = createPokemonCard(pokemon);
-            container.insertAdjacentHTML('beforeend', cardHTML);
-
-            // Agrega un evento de clic al botón "Ver Más" para guardar el Pokémon en localStorage
-            const verMasButton = container.querySelector('.ver-mas-button:last-child');
-            verMasButton.addEventListener('click', () => {
-                guardarPokemonEnLocalStorage(pokemon);
-            });
-        }
-
-        // Función para crear la tarjeta HTML de un Pokémon
-        function createPokemonCard(pokemon) {
-            return `
-              <div class="pokemon-card">
-                  <img src="${pokemon.image}" alt="${pokemon.name}">
-                  <h2>${pokemon.name}</h2>
-                  <p>${pokemon.description}</p>
-                  <a href="${pokemon.link}" class="ver-mas-button" style="text-decoration: none;">Ver Más</a>
-              </div>
-            `;
-        }
-
-        // Renderiza las tarjetas en el contenedor HTML
-        const container = document.querySelector('.content');
-        pokemonCards.forEach((pokemon) => {
-            createAndAppendPokemonCard(container, pokemon);
-        });
-
-        // Obtén los Pokémon guardados desde localStorage
-        const pokemonGuardados = JSON.parse(localStorage.getItem('pokemonGuardados'));
-
-        // Hacer algo con los Pokémon guardados (por ejemplo, mostrarlos en otra parte de tu sitio)
-        if (pokemonGuardados) {
-            console.log('Pokémon guardados:', pokemonGuardados);
-        }
-    </script>
     <script src="script.js"></script>
-
 </body>
-</html>
 
+</html>

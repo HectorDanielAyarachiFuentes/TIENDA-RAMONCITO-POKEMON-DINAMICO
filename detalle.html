@@ -112,15 +112,18 @@
                 const multiplicador = parseFloat(document.getElementById('multiplicador').value);
                 const precio = parseFloat(document.getElementById('precio').textContent);
                 const resultado = precio * multiplicador;
-
-                // Mostrar el resultado y solicitar confirmación
-                const confirmacion = window.confirm(`El precio total es: US$ ${resultado}. ¿Estás seguro de realizar la compra?`);
+            
+                // Dar formato al resultado con puntos cada tres dígitos
+                const resultadoFormateado = resultado.toLocaleString();
+            
+                // Mostrar el resultado formateado y solicitar confirmación
+                const confirmacion = window.confirm(`El precio total es: US$ ${resultadoFormateado}. ¿Estás seguro de realizar la compra?`);
 
                 if (confirmacion) {
                     // Cambiar el texto del botón
                     const botonCompra = document.querySelector('.compra-button');
                     botonCompra.textContent = 'Enviar Producto';
-
+            
                     // Mostrar la dirección inventada
                     const direccion = '123 Calle Ficticia, Ciudad Imaginaria';
                     window.alert(`Estás comprando un Pokémon. Haz clic en "Enviar Producto" para enviarlo a la siguiente dirección:\n\n${direccion}`);

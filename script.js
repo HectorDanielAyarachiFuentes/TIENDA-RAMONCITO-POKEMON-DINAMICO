@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Buscar el Pokémon correspondiente por su ID
     const pokemon = pokemonData.find((p) => p.nombre === pokemonId);
-  
+
     // Mostrar la información del Pokémon en el div pokemon-info
     const pokemonInfoDiv = document.getElementById("pokemon-info");
     pokemonInfoDiv.innerHTML = `
@@ -115,9 +115,25 @@ function cambiarModo() {
     modoBoton.innerText = 'Modo oscuro';
   }
 }
-  
+
   function goBackToIndex() {
     window.location.href = 'index.html';
+  }
+
+
+  function realizarCompra() {
+    const cantidadInput = prompt('Ingrese la cantidad a comprar:');
+    const cantidad = parseInt(cantidadInput);
+    const precio = parseFloat(document.getElementById('precio').textContent);
+    const multiplicador = 1.5; // Puedes ajustar el valor del multiplicador según tus necesidades
+    const total = cantidad * precio * multiplicador;
+    alert(`Has comprado ${cantidad} unidades. El total a pagar es: US$ ${total.toFixed(2)}. ¡Gracias por tu compra!`);
+    enviarProducto(); // Llama a la función enviarProducto() para enviar el producto
+  }
+
+  function enviarProducto() {
+    // Aquí puedes agregar el código para enviar el producto, como realizar una solicitud a un servidor o guardar los datos en una base de datos
+    alert('Producto enviado exitosamente.');
   }
 
 

@@ -57,6 +57,8 @@
         <!-- Resto del código HTML -->
     </div>
 </div>
+
+
     <footer class="footer">
         <p>© 2023 Comercio Digital de Pokémon</p>
         <p>¡Atrápalos ya, o al menos clónalos!</p>
@@ -113,7 +115,7 @@
 
                 // Mostrar el resultado y solicitar confirmación
                 const confirmacion = window.confirm(`El precio total es: US$ ${resultado}. ¿Estás seguro de realizar la compra?`);
-            
+
                 if (confirmacion) {
                     // Cambiar el texto del botón
                     const botonCompra = document.querySelector('.compra-button');
@@ -124,7 +126,22 @@
                     window.alert(`Estás comprando un Pokémon. Haz clic en "Enviar Producto" para enviarlo a la siguiente dirección:\n\n${direccion}`);
                 }
             }
+            // Obtener el botón de compra
+const botonCompra = document.querySelector('.compra-button');
+
+// Agregar un evento de clic al botón
+botonCompra.addEventListener('click', function() {
+    // Mostrar mensaje de alerta
+    window.alert('Enviando... Solo espera tu Pokémon');
+
+    // Redirigir a la página "index-picachu.html"
+    window.location.href = 'index-picachu.html';
+});
+
+
         </script>
+
+
 </body>
 </html>
 

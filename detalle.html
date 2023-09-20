@@ -45,6 +45,18 @@
         <button onclick="goBackToIndex()" class="volver-button">Volver Atrás</button>
     </div>
 </div>
+<div class="content">
+    <div class="pokemon-card">
+        <!-- Resto del código HTML -->
+
+        <p>Precio: US$ <span id="precio"></span></p>
+        <label for="multiplicador">Multiplicador:</label>
+        <input type="number" id="multiplicador" value="1">
+        <p>Votación: <span id="votacion"></span></p>
+        <button class="compra-button" onclick="realizarCompra()">Compra</button>
+        <!-- Resto del código HTML -->
+    </div>
+</div>
     <footer class="footer">
         <p>© 2023 Comercio Digital de Pokémon</p>
         <p>¡Atrápalos ya, o al menos clónalos!</p>
@@ -93,7 +105,27 @@
             .catch(error => {
                 console.error('Error al cargar los datos:', error);
             });
-    </script>
+
+            function realizarCompra() {
+                const multiplicador = parseFloat(document.getElementById('multiplicador').value);
+                const precio = parseFloat(document.getElementById('precio').textContent);
+                const resultado = precio * multiplicador;
+
+                // Mostrar el resultado y solicitar confirmación
+                const confirmacion = window.confirm(`El precio total es: US$ ${resultado}. ¿Estás seguro de realizar la compra?`);
+            
+                if (confirmacion) {
+                    // Cambiar el texto del botón
+                    const botonCompra = document.querySelector('.compra-button');
+                    botonCompra.textContent = 'Enviar Producto';
+
+                    // Mostrar la dirección inventada
+                    const direccion = '123 Calle Ficticia, Ciudad Imaginaria';
+                    window.alert(`Estás comprando un Pokémon. Haz clic en "Enviar Producto" para enviarlo a la siguiente dirección:\n\n${direccion}`);
+                }
+            }
+        </script>
 </body>
 </html>
+
 

@@ -223,6 +223,8 @@ body.dark-mode .pokemon-card li {
     text-align: center; /* Alineación de texto en el centro */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Inicia invisible para la animación */
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 .pokemon-card:hover {
@@ -376,12 +378,32 @@ body.dark-mode .ventana-emergente h2 {
     top: 10px;
     right: 10px;
     cursor: pointer;
-    font-size: 1.5rem;
-    color: #333;
+    font-size: 2.5rem; /* Más grande */
+    font-weight: bold;
+    color: #ff0000; /* Rojo sangre */
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    animation: blink-blood 1.5s infinite;
+    transition: transform 0.2s;
+}
+
+.cerrar:hover {
+    transform: scale(1.2);
+    animation-play-state: paused; /* Pausar la animación al pasar el ratón */
 }
 
 body.dark-mode .cerrar {
-    color: #e0e0e0;
+    color: #ff0000; /* Mantenemos el rojo sangre para que destaque */
+}
+
+/* Capa semitransparente para el fondo del popup */
+#popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999; /* Justo debajo del popup */
 }
 
 /* Estilos para la lista dinámica de Pokémon en la página de inicio */
@@ -453,6 +475,22 @@ body.dark-mode #pokemon-list-home a:hover {
     width: 60px;
     height: 60px;
     animation: spin 1s linear infinite;
+}
+
+@keyframes blink-blood {
+    0%, 100% { color: #ff0000; transform: scale(1); }
+    50% { color: #ff4d4d; transform: scale(1.1); }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes spin {

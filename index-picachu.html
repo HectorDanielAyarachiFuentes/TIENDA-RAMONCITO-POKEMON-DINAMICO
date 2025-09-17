@@ -55,17 +55,19 @@
                 .then(data => {
                     console.log('[Catalog Page] Received data from manager, rendering cards.');
                     container.innerHTML = ''; // Limpiar el loader
-                    data.forEach(pokemon => {
-                        const cardHTML = `
-                          <div class="pokemon-card">
-                              <img src="${pokemon.imagen}" alt="${pokemon.nombre}">
-                              <h2>${pokemon.nombre}</h2>
-                              <div class="pokemon-type">${pokemon.caracteristicas.tipo}</div>
-                              <p>"${pokemon.lema}"</p>
-                              <a href="detalle.html?id=${pokemon.nombre.toLowerCase()}" class="ver-mas-button">Ver Más</a>
-                          </div>
+                    data.forEach((pokemon, index) => {
+                        const cardDiv = document.createElement('div');
+                        cardDiv.classList.add('pokemon-card');
+                        cardDiv.style.animationDelay = `${index * 100}ms`; // Retraso escalonado
+
+                        cardDiv.innerHTML = `
+                            <img src="${pokemon.imagen}" alt="${pokemon.nombre}">
+                            <h2>${pokemon.nombre}</h2>
+                            <div class="pokemon-type">${pokemon.caracteristicas.tipo}</div>
+                            <p>"${pokemon.lema}"</p>
+                            <a href="detalle.html?id=${pokemon.nombre.toLowerCase()}" class="ver-mas-button">Ver Más</a>
                         `;
-                        container.insertAdjacentHTML('beforeend', cardHTML);
+                        container.appendChild(cardDiv);
                     });
                 })
                 .catch(error => {

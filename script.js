@@ -127,18 +127,23 @@ document.addEventListener("DOMContentLoaded", function () {
     // For index.html (popup)
     const miVentanaEmergente = document.getElementById('miVentanaEmergente');
     const cerrarPopup = document.getElementById('cerrarPopup');
-    if (miVentanaEmergente && cerrarPopup) {
+    const popupOverlay = document.getElementById('popup-overlay');
+
+    if (miVentanaEmergente && cerrarPopup && popupOverlay) {
         const mostrarVentanaEmergente = () => {
             miVentanaEmergente.classList.remove('hidden');
+            popupOverlay.classList.remove('hidden');
         };
 
         const cerrarVentanaEmergente = () => {
             miVentanaEmergente.classList.add('hidden');
+            popupOverlay.classList.add('hidden');
             miVentanaEmergente.scrollTop = 0;
         };
 
         setTimeout(mostrarVentanaEmergente, 5000);
         cerrarPopup.addEventListener('click', cerrarVentanaEmergente);
+        popupOverlay.addEventListener('click', cerrarVentanaEmergente);
     }
 });
 

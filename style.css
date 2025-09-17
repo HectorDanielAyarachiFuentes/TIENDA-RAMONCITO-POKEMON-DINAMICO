@@ -5,6 +5,9 @@ body {
     margin: 0;
     padding: 0;
     transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Estilos para el modo oscuro */
@@ -94,6 +97,19 @@ body.dark-mode {
         align-items: center; /* Centra verticalmente */
     }
 
+    /* --- Mejoras de Contraste para Menú Móvil --- */
+    /* Modo Claro: Texto negro sobre fondo naranja */
+    .navbar-menu a {
+        color: #000;
+    }
+    /* Modo Oscuro: Fondo rojo oscuro y texto blanco */
+    body.dark-mode .navbar-menu {
+        background-color: #6e0000; /* Mismo rojo oscuro que la barra de navegación */
+    }
+    body.dark-mode .navbar-menu a {
+        color: #fff; /* Texto blanco para máximo contraste */
+    }
+
     .navbar-menu.show {
         display: flex;
     }
@@ -104,28 +120,18 @@ body.dark-mode {
     #ramoncito {
         font-size: 24px;
         font-weight: bold;
-        margin:20px
-
-    }
-}
- /* Estilos para hacer que el texto sea responsivo a 320px */
- @media screen and (max-width: 320px) {
-    #titulo {
-        font-size: 28px; /* Tamaño de fuente más pequeño para pantalla pequeña */
-    }
-
-    #descripcion {
-        font-size: 14px; /* Tamaño de fuente más pequeño para pantalla pequeña */
     }
 }
 /* Estilos para el contenido */
 .content {
-    max-width: 800px;
+    width: 90%;
+    max-width: 1200px;
     margin: 20px auto;
     background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    flex-grow: 1; /* Hace que el contenido principal crezca para empujar el footer hacia abajo */
 }
 
 .content p {
@@ -338,15 +344,18 @@ body.dark-mode .pokemon-card img {
 /* Estilos para la ventana emergente */
 .ventana-emergente {
     position: fixed;
-    top: 0; /* Fija la ventana emergente en la parte superior */
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     overflow-y: auto; /* Habilita el desplazamiento vertical solo dentro de la ventana emergente */
-    max-height: 100vh; /* Establece la altura máxima al alto de la ventana */
+    width: 90vw;
+    max-width: 600px;
+    max-height: 85vh; /* Establece la altura máxima al alto de la ventana */
+    border-radius: 10px;
 }
 
 body.dark-mode .ventana-emergente {
@@ -374,62 +383,6 @@ body.dark-mode .ventana-emergente h2 {
 body.dark-mode .cerrar {
     color: #e0e0e0;
 }
-
-/* Media query para pantallas con un ancho máximo de 320px (móviles pequeños) */
-@media (max-width: 320px) {
-    .ventana-emergente {
-        width: 90%; /* Ancho del 90% para que quepa bien en pantallas pequeñas */
-        max-width: 320px; /* Ancho máximo para mantenerlo legible */
-        max-height: 80vh; /* Altura máxima como el 80% del viewport height */
-        overflow-y: scroll; /* Habilitar el desplazamiento vertical si es necesario */
-        padding: 10px; /* Espaciado interno */
-    }
-
-    /* Estilos para el botón de cerrar en pantallas pequeñas */
-    .cerrar {
-        top: 5px;
-        right: 5px;
-        font-size: 12px;
-    }
-}
-
-/* Media query para tabletas en modo retrato y paisaje */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .ventana-emergente {
-        width: 70%; /* Ancho del 70% para una mejor visualización en tabletas */
-        max-width: 600px; /* Ancho máximo para mantenerlo legible */
-        max-height: 70vh; /* Altura máxima como el 70% del viewport height */
-        overflow-y: scroll; /* Habilitar el desplazamiento vertical si es necesario */
-        padding: 15px; /* Espaciado interno */
-    }
-
-    /* Estilos para el botón de cerrar en tabletas */
-    .cerrar {
-        top: 5px;
-        right: 5px;
-        font-size: 14px;
-    }
-}
-
-/* Media query para pantallas de dispositivos móviles más grandes, como iPhone X */
-@media (min-width: 375px) and (max-width: 414px) {
-    .ventana-emergente {
-        width: 80%; /* Ancho del 80% para una mejor visualización en estos dispositivos */
-        max-width: 400px; /* Ancho máximo para mantenerlo legible */
-        max-height: 70vh; /* Altura máxima como el 70% del viewport height */
-        overflow-y: scroll; /* Habilitar el desplazamiento vertical si es necesario */
-        padding: 15px; /* Espaciado interno */
-    }
-
-    /* Estilos para el botón de cerrar en estos dispositivos */
-    .cerrar {
-        top: 5px;
-        right: 5px;
-        font-size: 14px;
-    }
-}
-
-/* Agrega más media queries según sea necesario para otras resoluciones */
 
 /* Estilos para la lista dinámica de Pokémon en la página de inicio */
 #pokemon-list-home {
@@ -478,7 +431,7 @@ body.dark-mode #pokemon-list-home a:hover {
 /* Contenedor de la cuadrícula del catálogo */
 #catalog-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Forzar siempre 3 columnas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Rejilla responsiva */
     gap: 20px;
     padding: 0;
 }

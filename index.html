@@ -80,5 +80,37 @@
         <p>¡Atrápalos ya, o al menos clónalos!</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pokemonListHome = document.getElementById('pokemon-list-home');
+            if (pokemonListHome) {
+                console.log('[Home Page] Initializing dynamic Pokémon list.');
+                pokemonDataManager.getData()
+                    .then(data => {
+                        console.log('[Home Page] Received data, rendering list.');
+                        pokemonListHome.innerHTML = ''; // Limpiar contenido estático
+                        data.forEach(pokemon => {
+                            const listItem = document.createElement('li');
+                            const link = document.createElement('a');
+                            link.href = `detalle.html?id=${pokemon.nombre.toLowerCase()}`;
+
+                            const img = document.createElement('img');
+                            img.src = pokemon.imagen;
+                            img.alt = pokemon.nombre;
+
+                            link.appendChild(img);
+                            link.appendChild(document.createTextNode(pokemon.nombre));
+
+                            listItem.appendChild(link);
+                            pokemonListHome.appendChild(listItem);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('[Home Page] Error loading Pokémon list:', error);
+                        pokemonListHome.innerHTML = '<li>No se pudo cargar la lista de Pokémon. Inténtalo de nuevo más tarde.</li>';
+                    });
+            }
+        });
+    </script>
 </body>
 </html>

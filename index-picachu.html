@@ -36,9 +36,11 @@
         <p>© 2023 Comercio Digital de Pokémon</p>
         <p>¡Atrápalos ya, o al menos clónalos!</p>
     </footer>
+    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('catalog-container');
+            console.log('[Catalog Page] Page loaded.');
             if (!container) return;
 
             // Mostrar animación de carga
@@ -49,17 +51,17 @@
                 </div>
             `;
 
-            fetch('datos.json')
-                .then(response => response.json())
+            pokemonDataManager.getData()
                 .then(data => {
-                    container.innerHTML = ''; // Limpiar el loader y el contenedor
+                    console.log('[Catalog Page] Received data from manager, rendering cards.');
+                    container.innerHTML = ''; // Limpiar el loader
                     data.forEach(pokemon => {
                         const cardHTML = `
                           <div class="pokemon-card">
                               <img src="${pokemon.imagen}" alt="${pokemon.nombre}">
                               <h2>${pokemon.nombre}</h2>
                               <div class="pokemon-type">${pokemon.caracteristicas.tipo}</div>
-                              <p>${pokemon.descripcion}</p>
+                              <p>"${pokemon.lema}"</p>
                               <a href="detalle.html?id=${pokemon.nombre.toLowerCase()}" class="ver-mas-button">Ver Más</a>
                           </div>
                         `;
@@ -67,12 +69,20 @@
                     });
                 })
                 .catch(error => {
-                    console.error('Error al cargar el catálogo:', error);
-                    container.innerHTML = '<p class="error-message">No se pudo cargar el catálogo. Por favor, inténtalo de nuevo más tarde.</p>';
+                    console.error('[Catalog Page] Error loading catalog:', error);
+                    container.innerHTML = `
+                        <div class="error-container">
+                            <p class="error-message">Hubo un problema al cargar el catálogo.</p>
+                            <button id="retry-button" class="volver-button">Intentar de nuevo</button>
+                        </div>
+                    `;
+                    const retryButton = document.getElementById('retry-button');
+                    if (retryButton) {
+                        retryButton.addEventListener('click', () => window.location.reload());
+                    }
                 });
         });
     </script>
-    <script src="script.js"></script>
 
 </body>
 </html>

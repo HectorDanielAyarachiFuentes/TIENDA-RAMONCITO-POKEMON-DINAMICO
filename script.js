@@ -1,4 +1,83 @@
+const pokemonDataManager = {
+    _data: null,
+    _dataVersion: '1.1', // Incrementa esta versión si cambias la estructura de datos.json
+    _storageKey: null,
+    _isFetching: false,
+    _fetchPromise: null,
+
+    getData: function() {
+        console.log('[DataManager] getData() called.');
+        if (this._data) {
+            console.log('[DataManager] Returning data from memory cache.');
+            return Promise.resolve(this._data);
+        }
+
+        if (this._isFetching) {
+            console.log('[DataManager] A fetch is already in progress. Returning existing promise.');
+            return this._fetchPromise;
+        }
+
+        this._storageKey = `pokemonData-v${this._dataVersion}`;
+        const storedData = localStorage.getItem(this._storageKey);
+        if (storedData) {
+            console.log('[DataManager] Found data in localStorage.');
+            try {
+                this._data = JSON.parse(storedData);
+                console.log('[DataManager] Successfully parsed localStorage data. Preloading images.');
+                this.preloadImages(this._data);
+                return Promise.resolve(this._data);
+            } catch (e) {
+                console.error(`[DataManager] Failed to parse ${this._storageKey} from localStorage. Removing corrupt data.`, e);
+                localStorage.removeItem(this._storageKey);
+            }
+        }
+
+        console.log(`[DataManager] Cache key: ${this._storageKey}`);
+        console.log('[DataManager] No cached data found. Starting network fetch for datos.json.');
+        this._isFetching = true;
+        this._fetchPromise = fetch('datos.json')
+            .then(response => {
+                console.log('[DataManager] Fetch response received. Status:', response.status);
+                if (!response.ok) throw new Error(`Network response was not ok. Status: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                console.log('[DataManager] Successfully fetched and parsed JSON data.');
+                this._data = data;
+                this._isFetching = false;
+                localStorage.setItem(this._storageKey, JSON.stringify(data));
+                console.log('[DataManager] Data stored in localStorage. Preloading images.');
+                this.preloadImages(data);
+                return data;
+            })
+            .catch(error => {
+                this._isFetching = false;
+                console.error('[DataManager] Fetch failed.', error);
+                throw error;
+            });
+        
+        return this._fetchPromise;
+    },
+
+    preloadImages: function(data) {
+        if (!data) return;
+        const imageUrls = data.map(pokemon => pokemon.imagen);
+        imageUrls.forEach(url => {
+            const img = new Image();
+            img.src = url;
+        });
+    }
+};
+
 document.addEventListener("DOMContentLoaded", function () {
+    // --- Initialize Data Manager ---
+    // This will start fetching/loading data from localStorage and preloading images
+    pokemonDataManager.getData().catch(() => {
+        // Catch the error here so it doesn't show up as an uncaught promise rejection in the console
+        // The page-specific scripts will handle showing an error message to the user.
+        console.log("[DataManager] Initial pre-load fetch failed. Page-specific logic will handle retry.");
+    });
+
     // --- Theme persistence ---
     const themeKey = 'theme-preference';
     const modoBoton = document.getElementById('modoBoton');
@@ -61,56 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(mostrarVentanaEmergente, 5000);
         cerrarPopup.addEventListener('click', cerrarVentanaEmergente);
     }
-
-    // For index-picachu.html (loading pokemon data)
-    // This logic was scattered and incomplete in the original script.
-    // It is better to have separate scripts or ensure elements exist.
-    if (document.querySelector(".ver-mas-button")) {
-        // This check assumes .ver-mas-button only exists on the catalog page.
-        fetch("datos.json")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                localStorage.setItem("pokemonData", JSON.stringify(data));
-            })
-            .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
-            });
-    }
 });
-
-// For index.html (dynamic pokemon list)
-const pokemonListHome = document.getElementById('pokemon-list-home');
-if (pokemonListHome) {
-    fetch('datos.json')
-        .then(response => response.json())
-        .then(data => {
-            pokemonListHome.innerHTML = ''; // Limpiar contenido estático
-            data.forEach(pokemon => {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = `detalle.html?id=${pokemon.nombre.toLowerCase()}`;
-
-                const img = document.createElement('img');
-                img.src = pokemon.imagen;
-                img.alt = pokemon.nombre;
-
-                link.appendChild(img);
-                link.appendChild(document.createTextNode(pokemon.nombre));
-
-                listItem.appendChild(link);
-                pokemonListHome.appendChild(listItem);
-            });
-        })
-        .catch(error => {
-            console.error('Error al cargar la lista de Pokémon:', error);
-            pokemonListHome.innerHTML = '<li>No se pudo cargar la lista de Pokémon. Inténtalo de nuevo más tarde.</li>';
-        });
-}
 
 // NOTE: The original script.js had several global functions like `realizarCompra`,
 // `goBackToIndex`, etc., which were duplicated or conflicting.

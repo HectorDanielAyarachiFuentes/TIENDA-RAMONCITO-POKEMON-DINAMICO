@@ -46,24 +46,34 @@
             const container = document.getElementById('detalle-container');
             const urlParams = new URLSearchParams(window.location.search);
             const pokemonId = urlParams.get('id');
+            console.log(`[Detalle Page] Page loaded. Looking for Pokémon with ID: "${pokemonId}"`);
 
             if (!pokemonId) {
+                console.error('[Detalle Page] No Pokémon ID found in URL.');
                 container.innerHTML = '<p class="error-message">No se ha especificado un Pokémon.</p>';
                 return;
             }
 
-            fetch('datos.json')
-                .then(response => response.json())
+            pokemonDataManager.getData()
                 .then(data => {
+                    console.log('[Detalle Page] Received data from manager:', data);
                     const pokemon = data.find(p => p.nombre.toLowerCase() === pokemonId.toLowerCase());
+                    console.log('[Detalle Page] Found Pokémon:', pokemon);
 
                     if (!pokemon) {
+                        console.error(`[Detalle Page] Pokémon with ID "${pokemonId}" not found in data.`);
                         container.innerHTML = '<p class="error-message">Pokémon no encontrado.</p>';
+                        document.title = "Pokémon no encontrado";
                         return;
                     }
 
+                    // Actualizar el título de la página
+                    document.title = `${pokemon.nombre} - Detalles`;
+
                     // Crear HTML dinámicamente
-                    const debilidadesHTML = pokemon.debilidades.map(d => `<span class="debilidad-tag">${d}</span>`).join('');
+                    const debilidadesHTML = (pokemon.debilidades && Array.isArray(pokemon.debilidades))
+                        ? pokemon.debilidades.map(d => `<span class="debilidad-tag">${d}</span>`).join('')
+                        : '<span>No disponible</span>';
 
                     container.innerHTML = `
                         <div class="detalle-imagen-col">
@@ -105,8 +115,17 @@
                     });
                 })
                 .catch(error => {
-                    console.error('Error al cargar los datos del Pokémon:', error);
-                    container.innerHTML = '<p class="error-message">Hubo un problema al cargar la información. Inténtalo de nuevo.</p>';
+                    console.error('[Detalle Page] Error loading Pokémon details:', error);
+                    container.innerHTML = `
+                        <div class="error-container">
+                            <p class="error-message">Hubo un problema al cargar la información.</p>
+                            <button id="retry-button" class="volver-button">Intentar de nuevo</button>
+                        </div>
+                    `;
+                    const retryButton = document.getElementById('retry-button');
+                    if (retryButton) {
+                        retryButton.addEventListener('click', () => window.location.reload());
+                    }
                 });
         });
     </script>

@@ -516,9 +516,20 @@ body.dark-mode .loader {
 .error-message {
     text-align: center;
     color: #d32f2f; /* Rojo para el error */
-    grid-column: 1 / -1; /* Ocupa todo el ancho */
     font-size: 1.2rem;
-    padding: 20px;
+}
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+}
+
+.error-container .error-message {
+    margin-bottom: 20px;
 }
 
 /*

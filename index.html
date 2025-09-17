@@ -13,37 +13,35 @@
         <h1>Bienvenido al Comercio Digital de Pokémon</h1>
         <p>Solo disponibles los mejores Pokémons:</p>
     </header>
-    <div class="navbar">
-        <div class="navbar-toggle" onclick="toggleMenu()">
+    <nav class="navbar">
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="Toggle navigation menu">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
-        </div>
+        </button>
         <span id="ramoncito"> TIENDA RAMONCITO</span>
         <ul class="navbar-menu" id="navbarMenu">
             <li><a href="index.html">INICIO</a></li>
             <li><a href="index-picachu.html">CATALOGO</a></li>
             <li><a href="https://hectordanielayarachifuentes.github.io/venta-tarjetas-pokemon/">TARJETAS POKEMON</a></li>
-
             <!-- Agrega más enlaces según sea necesario -->
         </ul>
-      <button id="modoBoton" onclick="cambiarModo()">Modo claro</button> <!-- Botón de cambio de modo -->
-    </div>
-    <div class="content">
-        <p>En nuestro Comercio Digital de Pokémon, ofrecemos una selección exclusiva de los mejores Pokémons para
-            entrenadores de élite. Todos nuestros Pokémons son clonados en colaboración con Umbrella
-            Corporation<sup>™</sup>.</p>
-        <p>Actualmente, tenemos disponibles los siguientes Pokémons:</p>
-        <ul>
-            <li>Pikachu</li>
-            <li>Charizard</li>
-            <li>Gengar</li> <!-- Añade tu elección de Pokémon aquí -->
+      <button type="button" id="modoBoton">Modo claro</button> <!-- Botón de cambio de modo -->
+    </nav>
+    <main class="content">
+        <p>
+            ¡Bienvenido, Entrenador de Élite! Has llegado al epicentro de la innovación Pokémon, una operación
+            clandestina en colaboración con la prestigiosa <strong>Umbrella Corporation™</strong>. Aquí no solo atrapas Pokémon;
+            adquieres especímenes de bioingeniería de primer nivel.
+        </p>
+        <p>Nuestra selección actual representa la cúspide de la clonación:</p>
+        <ul id="pokemon-list-home">
+            <!-- Los Pokémon se cargarán aquí dinámicamente -->
         </ul>
-        <p>¡Aprovecha esta oportunidad única para fortalecer tu equipo de Pokémon!</p>
-    </div>
+    </main>
     <!-- VENTANA EMERGENTE -->
-    <div id="miVentanaEmergente" class="ventana-emergente" style="display:none;">
-        <span class="cerrar" id="cerrarPopup">&times;</span>
+    <div id="miVentanaEmergente" class="ventana-emergente hidden">
+        <button type="button" class="cerrar" id="cerrarPopup" aria-label="Cerrar">&times;</button>
         <h2>Corporación Umbrella</h2>
         <p>
             ¿Estás buscando un trabajo desafiante y emocionante? ¿Quieres trabajar en el sector de la tecnología y la
@@ -73,10 +71,9 @@
             ¡Únete a nosotros y cambia el mundo!
         </p>
         <p>
-            Envía tu currículum vitae a <a href="mailto:umbrella@kil.com">umbrella@kill.com</a> o visita nuestra
+            Envía tu currículum vitae a <a href="mailto:umbrella@kill.com">umbrella@kill.com</a> o visita nuestra
             página web en <a href="https://www.umbrella.com">www.umbrella.com</a>.
         </p>
-    </div>
     </div>
     <footer class="footer">
         <p>© 2023 Comercio Digital de Pokémon</p>
@@ -84,5 +81,4 @@
     </footer>
     <script src="script.js"></script>
 </body>
-
 </html>

@@ -12,54 +12,29 @@
         <h1>CATALOGO POKÉMON</h1>
         <p>Solo disponibles los mejores Pokémon:</p>
     </header>
-    <div class="navbar">
-        <div class="navbar-toggle" onclick="toggleMenu()">
+    <nav class="navbar">
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="Toggle navigation menu">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
-        </div>
+        </button>
         <span id="ramoncito">TIENDA RAMONCITO</span>
         <ul class="navbar-menu" id="navbarMenu">
             <li><a href="index.html">INICIO</a></li>
-            <li><a href="#">CATÁLOGO</a></li>
+            <li><a href="index-picachu.html">CATÁLOGO</a></li>
             <li><a href="https://hectordanielayarachifuentes.github.io/venta-tarjetas-pokemon/">TARJETAS POKEMON</a></li>
-
-            <!-- Agrega más enlaces según sea necesario -->
         </ul>
-        <button id="modoBoton" onclick="cambiarModo()">Modo claro</button> <!-- Botón de cambio de modo -->
-    </div>
-   <div class="content">
-    <div class="pokemon-card">
-        <img src="" alt="">
-        <h2></h2>
-        <p></p>
-        <h3>Características:</h3>
-        <ul>
-            <li>Tipo: </li>
-            <li>Habilidad: </li>
-            <li>Poder: </li>
-            <li>Velocidad: </li>
-        </ul>
-        <p>Compra: <span id="compra"></span></p>
-        <p>Precio: US$ <span id="precio"></span></p>
-        <p>Votación: <span id="votacion"></span></p>
-        <button class="compra-button">Compra</button>
-        <button onclick="goBackToIndex()" class="volver-button">Volver Atrás</button>
-    </div>
-</div>
-<div class="content">
-    <div class="pokemon-card">
-        <!-- Resto del código HTML -->
-
-        <p>Precio: US$ <span id="precio"></span></p>
-        <label for="multiplicador">Multiplicador:</label>
-        <input type="number" id="multiplicador" value="1">
-        <p>Votación: <span id="votacion"></span></p>
-        <button class="compra-button" onclick="realizarCompra()">Compra</button>
-        <!-- Resto del código HTML -->
-    </div>
-</div>
-
+        <button type="button" id="modoBoton">Modo claro</button> <!-- Botón de cambio de modo -->
+    </nav>
+    <main class="content">
+        <div id="detalle-container">
+            <!-- El contenido del Pokémon se cargará aquí dinámicamente -->
+            <div class="loader-wrapper">
+                <div class="loader"></div>
+                <p>Cargando detalles...</p>
+            </div>
+        </div>
+    </main>
 
     <footer class="footer">
         <p>© 2023 Comercio Digital de Pokémon</p>
@@ -67,87 +42,73 @@
     </footer>
     <script src="script.js"></script>
     <script>
-        function goBackToIndex() {
-            window.location.href = 'index-picachu.html';
-        }
-    </script>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('detalle-container');
+            const urlParams = new URLSearchParams(window.location.search);
+            const pokemonId = urlParams.get('id');
 
-        // Obtener el ID del Pokémon de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const pokemonId = urlParams.get('id');
-
-        // Invocar los datos del archivo JSON y actualizar el DOM según el ID del Pokémon
-        fetch('datos.json')
-            .then(response => response.json())
-            .then(data => {
-                const pokemon = data.find(p => p.nombre.toLowerCase() === pokemonId.toLowerCase());
-
-                if (pokemon) {
-                    // Actualizar el contenido HTML de detalles
-                    document.querySelector('.pokemon-card img').src = pokemon.imagen;
-                    document.querySelector('.pokemon-card img').alt = pokemon.nombre;
-                    document.querySelector('.pokemon-card h2').textContent = pokemon.nombre;
-                    document.querySelector('.pokemon-card p').textContent = pokemon.descripcion;
-                    document.querySelector('.pokemon-card ul li:nth-child(1)').textContent = `Tipo: ${pokemon.caracteristicas.tipo || pokemon.caracteristicas.Tipo}`;
-                    document.querySelector('.pokemon-card ul li:nth-child(2)').textContent = `Habilidad: ${pokemon.caracteristicas.habilidad || pokemon.caracteristicas.Habilidad}`;
-                    document.querySelector('.pokemon-card ul li:nth-child(3)').textContent = `Poder: ${pokemon.caracteristicas.poder || pokemon.caracteristicas.Poder}`;
-                    document.querySelector('.pokemon-card ul li:nth-child(4)').textContent = `Velocidad: ${pokemon.caracteristicas.velocidad || pokemon.caracteristicas.Velocidad}`;
-                    document.getElementById('compra').textContent = pokemon.compra;
-                    document.getElementById('precio').textContent = pokemon.precio;
-                    document.getElementById('votacion').textContent = pokemon.votacion;
-                } else {
-                    // Manejar el caso en el que el Pokémon no se encuentra
-                    document.querySelector('.pokemon-card h2').textContent = 'Pokémon no encontrado';
-                    document.querySelector('.pokemon-card p').textContent = 'El Pokémon que buscas no está disponible.';
-                    document.querySelector('.pokemon-card img').src = 'imagen_predeterminada.jpg';
-                }
-            })
-            .catch(error => {
-                console.error('Error al cargar los datos:', error);
-            });
-
-            function realizarCompra() {
-                const multiplicador = parseFloat(document.getElementById('multiplicador').value);
-                const precio = parseFloat(document.getElementById('precio').textContent);
-                const resultado = precio * multiplicador;
-            
-                // Dar formato al resultado con puntos cada tres dígitos
-                const resultadoFormateado = resultado.toLocaleString();
-            
-                // Mostrar el resultado formateado y solicitar confirmación
-                const confirmacion = window.confirm(`El precio total es: US$ ${resultadoFormateado}. ¿Estás seguro de realizar la compra?`);
-
-                if (confirmacion) {
-                    // Cambiar el texto del botón
-                    const botonCompra = document.querySelector('.compra-button');
-                    botonCompra.textContent = 'Enviar Producto';
-            
-                    // Mostrar la dirección inventada
-                    const direccion = '123 Calle Ficticia, Ciudad Imaginaria';
-                    window.alert(`Estás comprando un Pokémon. Haz clic en "Enviar Producto" para enviarlo a la siguiente dirección:\n\n${direccion}`);
-                }
+            if (!pokemonId) {
+                container.innerHTML = '<p class="error-message">No se ha especificado un Pokémon.</p>';
+                return;
             }
-            // Obtener el botón de compra
-const botonCompra = document.querySelector('.compra-button');
 
-// Agregar un evento de clic al botón
-botonCompra.addEventListener('click', function() {
-    // Mostrar mensaje de alerta
-    window.alert('Enviando... Solo espera tu Pokémon');
+            fetch('datos.json')
+                .then(response => response.json())
+                .then(data => {
+                    const pokemon = data.find(p => p.nombre.toLowerCase() === pokemonId.toLowerCase());
 
-    // Redirigir a la página "index-picachu.html"
-    window.location.href = 'index-picachu.html';
-});
+                    if (!pokemon) {
+                        container.innerHTML = '<p class="error-message">Pokémon no encontrado.</p>';
+                        return;
+                    }
 
+                    // Crear HTML dinámicamente
+                    const debilidadesHTML = pokemon.debilidades.map(d => `<span class="debilidad-tag">${d}</span>`).join('');
 
-        </script>
+                    container.innerHTML = `
+                        <div class="detalle-imagen-col">
+                            <img src="${pokemon.imagen}" alt="Imagen de ${pokemon.nombre}">
+                        </div>
+                        <div class="detalle-info-col">
+                            <span class="pokemon-type">${pokemon.caracteristicas.tipo}</span>
+                            <h2 class="nombre-pokemon">${pokemon.nombre}</h2>
+                            <p class="lema-pokemon">"${pokemon.lema}"</p>
+                            <p class="descripcion-pokemon">${pokemon.descripcion}</p>
+                            
+                            <h3>Estadísticas</h3>
+                            <div class="stats-grid">
+                                <div><strong>Altura</strong><span>${pokemon.fisico.altura}</span></div>
+                                <div><strong>Peso</strong><span>${pokemon.fisico.peso}</span></div>
+                                <div><strong>Poder</strong><span>${pokemon.caracteristicas.poder}</span></div>
+                                <div><strong>Velocidad</strong><span>${pokemon.caracteristicas.velocidad}</span></div>
+                            </div>
 
+                            <h3>Debilidades</h3>
+                            <div class="debilidades-list">${debilidadesHTML}</div>
 
+                            <div class="compra-section">
+                                <p class="precio">Precio: <span>US$ ${pokemon.precio.toLocaleString('es-ES')}</span></p>
+                                <button class="compra-button">Adquirir Espécimen</button>
+                            </div>
+                            
+                            <button class="volver-button">Volver al Catálogo</button>
+                        </div>
+                    `;
+
+                    // Añadir Event Listeners
+                    container.querySelector('.volver-button').addEventListener('click', () => {
+                        window.location.href = 'index-picachu.html';
+                    });
+                    container.querySelector('.compra-button').addEventListener('click', () => {
+                        alert(`¡Felicidades! Has iniciado el proceso de adquisición de ${pokemon.nombre}. Un agente de Umbrella Corporation se pondrá en contacto contigo en breve.`);
+                        window.location.href = 'index-picachu.html';
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al cargar los datos del Pokémon:', error);
+                    container.innerHTML = '<p class="error-message">Hubo un problema al cargar la información. Inténtalo de nuevo.</p>';
+                });
+        });
+    </script>
 </body>
 </html>
-
-

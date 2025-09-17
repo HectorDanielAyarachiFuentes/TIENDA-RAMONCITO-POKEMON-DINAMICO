@@ -1,139 +1,121 @@
-// BARRA DESPLEGABLE
+document.addEventListener("DOMContentLoaded", function () {
+    // --- Theme persistence ---
+    const themeKey = 'theme-preference';
+    const modoBoton = document.getElementById('modoBoton');
 
-function toggleMenu() {
-    var navbarMenu = document.getElementById('navbarMenu');
-    navbarMenu.classList.toggle('show');
-}
+    const applyTheme = (theme) => {
+        const isDarkMode = theme === 'dark';
+        document.body.classList.toggle('dark-mode', isDarkMode);
+        if (modoBoton) {
+            modoBoton.textContent = isDarkMode ? 'Modo oscuro' : 'Modo claro';
+        }
+        // Also toggle for popup if it exists on the page
+        const ventanaEmergente = document.getElementById("miVentanaEmergente");
+        if (ventanaEmergente) {
+            ventanaEmergente.classList.toggle("dark-mode", isDarkMode);
+        }
+    };
 
+    // Apply saved theme on page load
+    const savedTheme = localStorage.getItem(themeKey);
+    applyTheme(savedTheme);
 
-// DARK MODE
-var modoBoton = document.getElementById('modoBoton');
-var ventanaEmergente = document.getElementById("miVentanaEmergente");
+    // Navbar toggle (replaces inline onclick)
+    const navbarToggle = document.getElementById('navbarToggle');
+    if (navbarToggle) {
+        navbarToggle.addEventListener('click', () => {
+            const navbarMenu = document.getElementById('navbarMenu');
+            if (navbarMenu) {
+                navbarMenu.classList.toggle('show');
+            }
+        });
+    }
 
-// Agrega un listener al botón para cambiar el modo
-modoBoton.addEventListener('click', function() {
-    // Alternar la clase "dark-mode" en el elemento body
-    document.body.classList.toggle('dark-mode');
-    
-    // Alternar la clase "dark-mode" en la ventana emergente
-    ventanaEmergente.classList.toggle("dark-mode");
+    // Dark Mode button listener (replaces old logic)
+    if (modoBoton) {
+        modoBoton.addEventListener('click', () => {
+            // Determine the new theme by checking the current state
+            const newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+            // Save the new preference
+            localStorage.setItem(themeKey, newTheme);
+            // Apply the new theme visually
+            applyTheme(newTheme);
+        });
+    }
+
+    // --- Page specific functionality ---
+
+    // For index.html (popup)
+    const miVentanaEmergente = document.getElementById('miVentanaEmergente');
+    const cerrarPopup = document.getElementById('cerrarPopup');
+    if (miVentanaEmergente && cerrarPopup) {
+        const mostrarVentanaEmergente = () => {
+            miVentanaEmergente.classList.remove('hidden');
+        };
+
+        const cerrarVentanaEmergente = () => {
+            miVentanaEmergente.classList.add('hidden');
+            miVentanaEmergente.scrollTop = 0;
+        };
+
+        setTimeout(mostrarVentanaEmergente, 5000);
+        cerrarPopup.addEventListener('click', cerrarVentanaEmergente);
+    }
+
+    // For index-picachu.html (loading pokemon data)
+    // This logic was scattered and incomplete in the original script.
+    // It is better to have separate scripts or ensure elements exist.
+    if (document.querySelector(".ver-mas-button")) {
+        // This check assumes .ver-mas-button only exists on the catalog page.
+        fetch("datos.json")
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                localStorage.setItem("pokemonData", JSON.stringify(data));
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+    }
 });
 
+// For index.html (dynamic pokemon list)
+const pokemonListHome = document.getElementById('pokemon-list-home');
+if (pokemonListHome) {
+    fetch('datos.json')
+        .then(response => response.json())
+        .then(data => {
+            pokemonListHome.innerHTML = ''; // Limpiar contenido estático
+            data.forEach(pokemon => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = `detalle.html?id=${pokemon.nombre.toLowerCase()}`;
 
-/** VENTANA EMERGENTE */
-// Obtén el elemento de la ventana emergente
-const miVentanaEmergente = document.getElementById('miVentanaEmergente');
+                const img = document.createElement('img');
+                img.src = pokemon.imagen;
+                img.alt = pokemon.nombre;
 
-// Función para mostrar la ventana emergente
-function mostrarVentanaEmergente() {
-    miVentanaEmergente.style.display = 'block';
-}
+                link.appendChild(img);
+                link.appendChild(document.createTextNode(pokemon.nombre));
 
-// Mostrar la ventana emergente automáticamente después de cinco segundos
-setTimeout(mostrarVentanaEmergente, 5000);
-
-// Obtén el elemento del botón para cerrar la ventana emergente
-const cerrarPopup = document.getElementById('cerrarPopup');
-
-// Función para cerrar la ventana emergente
-function cerrarVentanaEmergente() {
-    miVentanaEmergente.style.display = 'none';
-    miVentanaEmergente.scrollTop = 0;
-}
-
-// Agrega un evento de clic al botón para cerrar la ventana emergente
-cerrarPopup.addEventListener('click', cerrarVentanaEmergente);
-
-////****** */
-// script.js
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Cargar los datos del archivo JSON
-    fetch("datos.json")
-      .then((response) => response.json())
-      .then((data) => {
-        // Almacenar los datos en el almacenamiento local
-        localStorage.setItem("pokemonData", JSON.stringify(data));
-  
-        // Asignar eventos de clic a los enlaces
-        const verMasButtons = document.querySelectorAll(".ver-mas-button");
-        verMasButtons.forEach((button) => {
-          button.addEventListener("click", mostrarInformacionPokemon);
+                listItem.appendChild(link);
+                pokemonListHome.appendChild(listItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar la lista de Pokémon:', error);
+            pokemonListHome.innerHTML = '<li>No se pudo cargar la lista de Pokémon. Inténtalo de nuevo más tarde.</li>';
         });
-      });
-  });
-  
-  function mostrarInformacionPokemon(event) {
-    // Obtener el ID del Pokémon desde el atributo data-id
-    const pokemonId = event.currentTarget.getAttribute("data-id");
-
-    // Obtener los datos de los Pokémon desde el almacenamiento local
-    const pokemonData = JSON.parse(localStorage.getItem("pokemonData"));
-  
-    // Buscar el Pokémon correspondiente por su ID
-    const pokemon = pokemonData.find((p) => p.nombre === pokemonId);
-
-    // Mostrar la información del Pokémon en el div pokemon-info
-    const pokemonInfoDiv = document.getElementById("pokemon-info");
-    pokemonInfoDiv.innerHTML = `
-      <img src="${pokemon.imagen}" alt="${pokemon.nombre}">
-      <h2>${pokemon.nombre}</h2>
-      <p>${pokemon.descripcion}</p>
-      <h3>Características:</h3>
-      <ul>
-          <li>Tipo: ${pokemon.caracteristicas.tipo}</li>
-          <li>Habilidad: ${pokemon.caracteristicas.habilidad}</li>
-          <li>Poder: ${pokemon.caracteristicas.poder}</li>
-          <li>Velocidad: ${pokemon.caracteristicas.velocidad}</li>
-      </ul>
-      <p>${pokemon.compra}</p>
-      <p>Precio: $${pokemon.precio}</p>
-      <p>Votación: ${pokemon.votacion}</p>
-      <button class="compra-button">Compra</button>
-      <button onclick="goBackToIndex()" class="volver-button">Volver Atrás</button>
-    `;
-  }
-
-  function goBackToIndex() {
-    window.location.href = 'index.html';
-  }
-
-
-/*//*/
-// Función para cambiar el modo oscuro
-function cambiarModo() {
-  const modoBoton = document.getElementById('modoBoton');
-  const body = document.body;
-
-  if (body.classList.contains('modo-oscuro')) {
-    // Cambia a modo claro
-    body.classList.remove('modo-oscuro');
-    modoBoton.innerText = 'Modo claro';
-  } else {
-    // Cambia a modo oscuro
-    body.classList.add('modo-oscuro');
-    modoBoton.innerText = 'Modo oscuro';
-  }
 }
 
-  function goBackToIndex() {
-    window.location.href = 'index.html';
-  }
-
-
-  function realizarCompra() {
-    const cantidadInput = prompt('Ingrese la cantidad a comprar:');
-    const cantidad = parseInt(cantidadInput);
-    const precio = parseFloat(document.getElementById('precio').textContent);
-    const multiplicador = 1.5; // Puedes ajustar el valor del multiplicador según tus necesidades
-    const total = cantidad * precio * multiplicador;
-    alert(`Has comprado ${cantidad} unidades. El total a pagar es: US$ ${total.toFixed(2)}. ¡Gracias por tu compra!`);
-    enviarProducto(); // Llama a la función enviarProducto() para enviar el producto
-  }
-
-  function enviarProducto() {
-    // Aquí puedes agregar el código para enviar el producto, como realizar una solicitud a un servidor o guardar los datos en una base de datos
-    alert('Producto enviado exitosamente.');
-  }
-
-
+// NOTE: The original script.js had several global functions like `realizarCompra`,
+// `goBackToIndex`, etc., which were duplicated or conflicting.
+// They were likely used by inline `onclick` attributes in `detalle.html` and `index-picachu.html`.
+// By centralizing event handling inside the 'DOMContentLoaded' listener and removing
+// inline `onclick` attributes from HTML, the code becomes cleaner and less error-prone.
+// The functionality of those global functions should be moved into event listeners
+// specific to the pages where they are used (e.g., inside the script tags of `detalle.html`).

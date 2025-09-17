@@ -2,43 +2,59 @@
     {
         "nombre": "Pikachu",
         "imagen": "https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/8dde45491160c65c00978722ab0d0bd515fbf767/Fotos/FLMjsSGXsAQakfm.jpg?raw=true",
-        "descripcion": "Pikachu es un Pokémon eléctrico muy conocido por su carisma y poder.",
+        "descripcion": "Este Pokémon de tipo eléctrico almacena electricidad en las bolsas de sus mejillas. Cuando se siente amenazado, descarga la energía acumulada en un potente ataque.",
+        "lema": "¡Pika-Pika! ¡La chispa de la aventura!",
         "caracteristicas": {
             "tipo": "Eléctrico",
             "habilidad": "Electricidad estática",
             "poder": 55,
             "velocidad": 90
         },
+        "fisico": {
+            "altura": "0.4 m",
+            "peso": "6.0 kg"
+        },
+        "debilidades": ["Tierra"],
         "compra": "Puedes comprar a Pikachu en la tienda Pokémon.",
         "precio": 900.094,
         "votacion": 10
     },
     {
         "nombre": "Charizard",
-        "tipo": "Fuego/Volador",
         "imagen": "https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/8dde45491160c65c00978722ab0d0bd515fbf767/Fotos/doge_charizard_by_rytrom27_d6snycu-fullview.jpg?raw=true",
-        "descripcion": "Charizard es un Pokémon de tipo fuego/volador, conocido por su ferocidad en batalla.",
+        "descripcion": "Charizard surca los cielos en busca de oponentes fuertes. Echa fuego por la boca y es capaz de derretir cualquier cosa. No obstante, nunca usa su aliento de fuego contra un rival más débil que él.",
+        "lema": "La llama que nunca se extingue.",
         "caracteristicas": {
             "tipo": "Fuego/Volador",
             "habilidad": "Mar Llamas",
             "poder": 84,
             "velocidad": 100
         },
+        "fisico": {
+            "altura": "1.7 m",
+            "peso": "90.5 kg"
+        },
+        "debilidades": ["Agua", "Eléctrico", "Roca"],
         "compra": "Puedes comprar a Charizard en la tienda Pokémon.",
         "precio": 300.225,
         "votacion": 4
     },
     {
         "nombre": "Gengar",
-        "tipo": "Fantasma/Veneno",
         "imagen": "https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/main/Fotos/pngwing.com.png?raw=true",
-        "descripcion": "Gengar es un Pokémon de tipo fantasma/veneno que disfruta gastando bromas a otros Pokémon.",
+        "descripcion": "Se dice que por la noche, Gengar se oculta en las sombras de la gente y absorbe su calor. El frío que se siente de repente es obra de este Pokémon.",
+        "lema": "Tu sombra me pertenece.",
         "caracteristicas": {
             "tipo": "Fantasma/Veneno",
             "habilidad": "Levitación",
             "poder": 65,
             "velocidad": 110
         },
+        "fisico": {
+            "altura": "1.5 m",
+            "peso": "40.5 kg"
+        },
+        "debilidades": ["Fantasma", "Siniestro", "Psíquico"],
         "compra": "Puedes comprar a Gengar en la tienda Pokémon.",
         "precio": 666.666,
         "votacion": 5

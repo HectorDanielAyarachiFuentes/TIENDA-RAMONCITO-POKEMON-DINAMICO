@@ -1,7 +1,7 @@
 [
     {
         "nombre": "Pikachu",
-        "imagen": "https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/8dde45491160c65c00978722ab0d0bd515fbf767/Fotos/PIKACHU.jpg?raw=true",
+        "imagen": "Fotos/pikachu.png",
         "descripcion": "Este Pokémon de tipo eléctrico almacena electricidad en las bolsas de sus mejillas. Cuando se siente amenazado, descarga la energía acumulada en un potente ataque.",
         "lema": "¡Pika-Pika! ¡La chispa de la aventura!",
         "caracteristicas": {
@@ -21,7 +21,7 @@
     },
     {
         "nombre": "Charizard",
-        "imagen": "https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/8dde45491160c65c00978722ab0d0bd515fbf767/Fotos/charizard.jpg?raw=true",
+        "imagen": "Fotos/charizard.png",
         "descripcion": "Charizard surca los cielos en busca de oponentes fuertes. Echa fuego por la boca y es capaz de derretir cualquier cosa. No obstante, nunca usa su aliento de fuego contra un rival más débil que él.",
         "lema": "La llama que nunca se extingue.",
         "caracteristicas": {
@@ -41,7 +41,7 @@
     },
     {
         "nombre": "Gengar",
-        "imagen": "https://github.com/HectorDanielAyarachiFuentes/TIENDA-RAMONCITO-POKEMONS/blob/main/Fotos/pngwing.com.png?raw=true",
+        "imagen": "Fotos/gengar.png",
         "descripcion": "Se dice que por la noche, Gengar se oculta en las sombras de la gente y absorbe su calor. El frío que se siente de repente es obra de este Pokémon.",
         "lema": "Tu sombra me pertenece.",
         "caracteristicas": {
